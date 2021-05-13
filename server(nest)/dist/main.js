@@ -9,12 +9,12 @@ async function bootstrap() {
     app.useGlobalPipes(new common_1.ValidationPipe());
     app.enableCors();
     const config = new swagger_1.DocumentBuilder()
-        .setTitle('My Api')
-        .setDescription('The swagger API documentation sample')
-        .setVersion('1.0')
+        .setTitle("Ecommerce website APIs")
+        .setDescription("The swagger API documentation sample")
+        .setVersion("1.0")
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
-    swagger_1.SwaggerModule.setup('api-docs', app, document);
+    swagger_1.SwaggerModule.setup("api-docs", app, document);
     await app.listen(5000);
 }
 bootstrap();

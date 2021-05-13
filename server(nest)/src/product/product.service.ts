@@ -1,21 +1,21 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './entities/product.entity';
-import { Like, Repository } from 'typeorm';
+import { HttpException, Injectable, NotFoundException } from "@nestjs/common";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Product } from "./entities/product.entity";
+import { Between, Like, Repository } from "typeorm";
 import {
   uniqueNamesGenerator,
   adjectives,
   colors,
   names,
   languages,
-} from 'unique-names-generator';
+} from "unique-names-generator";
 
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(Product) private productRepository: Repository<Product>
   ) {}
   create(createProductDto: CreateProductDto) {
     return this.productRepository.save({
@@ -38,11 +38,38 @@ export class ProductService {
       }));
   }
 
+  sort(field: string, order: string) {
+    if (field === "price" && order === "ascending")
+      return this.productRepository.find({
+        order: {
+          productPrice: "ASC",
+        },
+      });
+    else if (field === "price" && order === "descending")
+      return this.productRepository.find({
+        order: {
+          productPrice: "DESC",
+        },
+      });
+    else if (field === "name")
+      return this.productRepository.find({
+        order: {
+          productName: "ASC",
+        },
+      });
+  }
+
+  filterByPrice(min: number, max: number) {
+    return this.productRepository.find({
+      where: { productPrice: Between(min, max) },
+    });
+  }
+
   fingByQuery(query: string) {
     return this.productRepository
       .findAndCount({
         where: { productName: Like(`%${query}%`) },
-        order: { productId: 'ASC' },
+        order: { productId: "ASC" },
       })
       .then((d) => ({ totalItems: d[1], data: d[0] }));
   }
@@ -60,7 +87,7 @@ export class ProductService {
       {
         productName: updateProductDto.name,
         productImage: updateProductDto.image,
-      },
+      }
     );
   }
 
@@ -84,13 +111,13 @@ export class ProductService {
         ? randomPrice * (Math.floor(Math.random() * (50 - 10) + 10) / 100)
         : randomPrice;
       a[i] = {
-        productId: 1000 + i + 1,
+        //productId: 1000 + i + 1,     //duplicate entry error will come
         productName: uniqueNamesGenerator({
           dictionaries: [adjectives, colors, names],
-          separator: ' ',
+          separator: " ",
         }),
         productImage: `https://picsum.photos/400?image=${Math.floor(
-          Math.random() * 1000,
+          Math.random() * 1000
         )}`,
         productStock: randomStock,
         productPrice: randomPrice.toFixed(2),

@@ -1,4 +1,4 @@
-import { UserEntity } from 'src/auth/entities/user.entity';
+import { UserEntity } from "src/auth/entities/user.entity";
 export declare class Address {
     id: number;
     line1: string;

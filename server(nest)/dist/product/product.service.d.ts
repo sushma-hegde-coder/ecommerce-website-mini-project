@@ -1,7 +1,7 @@
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { Product } from './entities/product.entity';
-import { Repository } from 'typeorm';
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+import { Product } from "./entities/product.entity";
+import { Repository } from "typeorm";
 export declare class ProductService {
     private productRepository;
     constructor(productRepository: Repository<Product>);
@@ -15,6 +15,8 @@ export declare class ProductService {
         currentPage: number;
         totalPages: number;
     }>;
+    sort(field: string, order: string): Promise<Product[]>;
+    filterByPrice(min: number, max: number): Promise<Product[]>;
     fingByQuery(query: string): Promise<{
         totalItems: number;
         data: Product[];

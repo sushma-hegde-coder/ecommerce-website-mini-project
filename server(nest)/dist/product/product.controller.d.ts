@@ -1,6 +1,6 @@
-import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductService } from "./product.service";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
 export declare class ProductController {
     private readonly productService;
     constructor(productService: ProductService);
@@ -19,6 +19,8 @@ export declare class ProductController {
         totalItems: number;
         data: import("./entities/product.entity").Product[];
     }>;
+    sortByField(field: string, order: string): Promise<import("./entities/product.entity").Product[]>;
+    filterByPrice(min: number, max: number): Promise<import("./entities/product.entity").Product[]>;
     findOne(id: string): Promise<import("./entities/product.entity").Product>;
     update(id: string, updateProductDto: UpdateProductDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;

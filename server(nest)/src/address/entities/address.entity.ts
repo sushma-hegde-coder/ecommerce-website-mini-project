@@ -1,11 +1,11 @@
-import { UserEntity } from 'src/auth/entities/user.entity';
+import { UserEntity } from "src/auth/entities/user.entity";
 import {
   BeforeInsert,
   Column,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-} from 'typeorm';
+} from "typeorm";
 
 @Entity()
 export class Address {
@@ -24,13 +24,13 @@ export class Address {
   @Column()
   state: string;
 
-  @Column({ type: 'integer' })
+  @Column({ type: "integer" })
   pincode: number;
 
-  @Column({ type: 'datetime' })
+  @Column({ type: "datetime" })
   createdAt: string;
 
-  // many addresses will be for one userentity
+  // many addresses will be for one user entity
   @ManyToOne((type) => UserEntity, (user) => user.userId)
   user: UserEntity;
 }
