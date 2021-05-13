@@ -40,3 +40,15 @@ export type UserSessionType = {
   user: object | null;
   error: string | null;
 };
+
+//check api in postman not in browser
+//config,headers,request,status,statusText are just info, in postman it is showed as extra info
+//only data returned is 'data'. Define that 'data' structure
+export interface ExchangeCurrencyType {
+  base: string;
+  date: Date;
+  rates: object;
+  success: string;
+  timestamp: any;
+  __proto_: object;
+}
