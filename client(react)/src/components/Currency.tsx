@@ -12,8 +12,6 @@ type CurrencyProps = {
 
 type State = {
   curCodeMap: Map<string, number>;
-  currencyName: string;
-  name: string;
   currencyValue: number;
   value: number;
 };
@@ -21,8 +19,6 @@ type State = {
 class Currency extends React.Component<CurrencyProps> {
   state: State = {
     curCodeMap: new Map<string, number>(),
-    currencyName: "EUR",
-    name: "EUR",
     currencyValue: 1,
     value: 1,
   };
@@ -46,34 +42,15 @@ class Currency extends React.Component<CurrencyProps> {
         <select
           onChange={(e) => {
             console.log("inside the onchange func", this.state.curCodeMap);
-            const name = e.target.value; //can give let name since you not assigning it to any var
-            this.setState((state) => {
-              return { currencyName: name };
-            });
-            //this.setState({ currencyName: name});
-            console.log(
-              "now clicked--",
-              name,
-              "set state cur name--",
-              this.state.currencyName
-            );
-            // const value= this.state.curCodeMap.get(e.target.value);
-            //const value = this.state.curCodeMap.get(this.state.currencyName); //since you are assigning it later,data type has to be defined
-            const value = this.state.curCodeMap.get(name);
-            this.setState((state) => {
-              return { currencyValue: value };
-            });
-            //this.setState({ currencyValue: value });
-            console.log(
-              "cur value-- ",
-              value,
-              "set state cur value",
-              this.state.currencyValue // let na:string =e.target.value;// let val:number = 3;
-            );
-
-            this.props.currencyChange({
-              currencyCode: e.target.value,
-              value: this.state.currencyValue,
+            const value = this.state.curCodeMap.get(e.target.value);
+            //setState takes a callback function, use it if you want to do any task after state is set
+            //since setState is asynchronous it takes time, the lines next to it will get executed by the time it completes setting variables in state
+            this.setState({ currencyValue: value }, () => {
+              console.log("cur value-- ", this.state.currencyValue);
+              this.props.currencyChange({
+                currencyCode: e.target.value,
+                value: this.state.currencyValue,
+              });
             });
           }}
           className={`form-control-sm ${bgcolor} bg-${this.props.theme}`}
@@ -87,7 +64,7 @@ class Currency extends React.Component<CurrencyProps> {
   }
 }
 // connect(what data to fetch from the store, what data to update inside the store)(component)
-//defined all data types correctly, see where it is defined string. Then change it to user defined datatype
+//define all data types correctly, see where it is defined string. Then change it to user defined datatype
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     currencyChange: (code: CurrencyRateType) =>
