@@ -5,9 +5,10 @@ const ActionTypes = {
 };
 
 const updateCurrency = (code: CurrencyRateType) => {
+  //(code:string, value:number)
   return {
     type: ActionTypes.UPDATE_CURRENCY, // required, unique
-    code, // payload (optional)
+    code, // payload (optional)  //code, value;
   };
 };
 

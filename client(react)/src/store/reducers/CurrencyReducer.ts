@@ -15,7 +15,7 @@ function currencyReducer(
 ): any {
   switch (action.type) {
     case CurrencyActions.ActionTypes.UPDATE_CURRENCY:
-      return { ...store, ...action.code };
+      return { ...store, ...action.code }; //{ code:action.code, value:action.value}
     default:
       //return current_store_data;
       return store;
