@@ -15,11 +15,10 @@ import LoginButtons from "./components/LoginButtons";
 import RegisterButton from "./components/RegisterButton";
 import CartButton from "./components/CartButton";
 type State = {
-  currentCurrency: string;
   theme: "light" | "dark";
 };
 class App extends React.Component<{}, State> {
-  state: State = { currentCurrency: "INR", theme: "light" };
+  state: State = { theme: "light" };
   render() {
     const { theme } = this.state;
     return (
@@ -33,8 +32,6 @@ class App extends React.Component<{}, State> {
         </Header>
         <ThemeContext.Provider value={theme}>
           <AppRouter />
-          {/* <Demo />
-          <ProductList selectedCurrency={this.state.currentCurrency} /> */}
         </ThemeContext.Provider>
       </BrowserRouter>
     );
