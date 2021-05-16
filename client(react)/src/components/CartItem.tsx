@@ -16,7 +16,7 @@ import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateC
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    width: "65vw",
+    width: "68vw",
     margin: "1vh",
   },
   details: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 0 auto",
   },
   cover: {
-    width: 160,
+    width: 175,
   },
   controls: {
     margin: "1vh",
@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type Props = {
+  id: number;
   image: string;
   name: string;
   price: string;
@@ -67,11 +68,13 @@ type Props = {
     operation: string
   ) => void;
   operation: string;*/
-  incrementTotal: (quantity: number, salePrice: string) => void;
-  decrementTotal: (quantity: number, salePrice: string) => void;
+  incrementTotal: (salePrice: string, id: number) => void;
+  decrementTotal: (salePrice: string, id: number) => void;
+  removeCartItem: (id: number, quantity: number, salePrice: string) => void;
 };
 
 const CartItem: React.FC<Props> = ({
+  id,
   image,
   name,
   price,
@@ -82,6 +85,7 @@ const CartItem: React.FC<Props> = ({
   //operation,
   incrementTotal,
   decrementTotal,
+  removeCartItem,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -102,9 +106,6 @@ const CartItem: React.FC<Props> = ({
             salePrice={salePrice}
             code={currencyCode}
           />
-          <Typography component="h5" variant="h5">
-            {quantity}
-          </Typography>
         </CardContent>
 
         <div className={classes.controls}>
@@ -113,7 +114,7 @@ const CartItem: React.FC<Props> = ({
               <IndeterminateCheckBoxOutlinedIcon
                 className={classes.playIcon}
                 onClick={() => {
-                  decrementTotal(quantity, salePrice);
+                  decrementTotal(salePrice, id);
                   //  setTotalAmount(quantity,salePrice,"decrement"); //you can not do this setTotalAmount(1,2,"decrement")
                   //whatever is got from parent as props you have to use it and pass it back in order to call parent's function
                 }}
@@ -121,14 +122,14 @@ const CartItem: React.FC<Props> = ({
             </IconButton>
             <TextField
               id="outlined-helperText"
-              defaultValue={quantity}
+              value={quantity}
               variant="outlined"
               className={classes.textfield}
             />
             <IconButton>
               <AddBoxOutlinedIcon
                 className={classes.playIcon}
-                onClick={() => incrementTotal(quantity, salePrice)}
+                onClick={() => incrementTotal(salePrice, id)}
               />
             </IconButton>
           </div>
@@ -137,7 +138,9 @@ const CartItem: React.FC<Props> = ({
               className={classes.button}
               variant="outlined"
               startIcon={<DeleteIcon />}
-              //onClick={() => setTotalAmount(quantity, salePrice, "decrement")}
+              onClick={() => {
+                removeCartItem(id, quantity, salePrice);
+              }}
             >
               REMOVE
             </Button>

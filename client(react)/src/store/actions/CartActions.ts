@@ -3,7 +3,8 @@ import { ProductType } from "../../types";
 const ActionTypes = {
   ADD_TO_CART: "[Cart] Add to cart",
   REMOVE_ITEM: "[Cart] Remove item",
-  UPDATE_QTY: "[Cart] Update qty",
+  INCREMENT_QTY: "[Cart] Increment qty",
+  DECREMENT_QTY: "[Cart] Decrement qty",
 };
 
 const addToCart = (product: ProductType) => {
@@ -18,10 +19,23 @@ const removeItem = (id: number) => {
     id,
   };
 };
-// const updateProductQty = (quantity: number) => {
-//   return {
-//     type: ActionTypes.UPDATE_QTY,
-//     quantity,
-//   };
-// };
-export default { ActionTypes, addToCart, removeItem };
+const incrementQty = (id: number) => {
+  return {
+    type: ActionTypes.INCREMENT_QTY,
+    id,
+  };
+};
+
+const decrementQty = (id: number) => {
+  return {
+    type: ActionTypes.DECREMENT_QTY,
+    id,
+  };
+};
+export default {
+  ActionTypes,
+  addToCart,
+  removeItem,
+  incrementQty,
+  decrementQty,
+};
