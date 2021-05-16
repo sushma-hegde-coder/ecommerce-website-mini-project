@@ -62,12 +62,6 @@ type Props = {
   salePrice: string;
   currencyCode: string;
   quantity: number;
-  /* setTotalAmount: (
-    quantity: number,
-    salePrice: string,
-    operation: string
-  ) => void;
-  operation: string;*/
   incrementTotal: (salePrice: string, id: number) => void;
   decrementTotal: (salePrice: string, id: number) => void;
   removeCartItem: (id: number, quantity: number, salePrice: string) => void;
@@ -81,8 +75,6 @@ const CartItem: React.FC<Props> = ({
   salePrice,
   currencyCode,
   quantity,
-  //setTotalAmount,
-  //operation,
   incrementTotal,
   decrementTotal,
   removeCartItem,

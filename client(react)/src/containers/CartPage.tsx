@@ -5,6 +5,7 @@ import CartActions from "../store/actions/CartActions";
 import { CartType, StoreType, CurrencyRateType } from "../types";
 import CartItem from "../components/CartItem";
 import CartSummary from "../components/CartSummary";
+import { Link } from "react-router-dom";
 import "../styles/CartStyle.css";
 
 type Props = {
@@ -107,6 +108,13 @@ class CartPage extends React.Component<Props, State> {
           total={this.state.totalAmount}
           currencyCode={this.props.currency.currencyCode}
         />
+        <div className="footer">
+          <Link to={"/checkout"}>
+            <button type="button" className="btn btn-primary btn-lg">
+              PLACE ORDER
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }
