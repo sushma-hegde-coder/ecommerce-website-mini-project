@@ -31,7 +31,7 @@ class Product extends React.Component<ProductProps> {
     );
   }
   getCorrectCurrencyValue(priceAmount: number) {
-    console.log(priceAmount, this.props.currency.value);
+    // console.log(priceAmount, this.props.currency.value);
     const value = priceAmount * this.props.currency.value;
     return value.toString();
   }

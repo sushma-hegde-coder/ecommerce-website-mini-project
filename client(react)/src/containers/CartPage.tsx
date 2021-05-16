@@ -12,7 +12,7 @@ type Props = {
 };
 
 type State = {
-  counterForQuantity: number;
+  totalAmount: number;
 };
 
 const mapStoreToProps = (store: StoreType) => {
@@ -23,11 +23,42 @@ const mapStoreToProps = (store: StoreType) => {
 };
 
 class CartPage extends React.Component<Props, State> {
+  state: State = { totalAmount: 0 };
   getCorrectCurrencyValue(priceAmount: number) {
-    console.log(priceAmount, this.props.currency.value);
+    //convert to correct currency value by doing calculation
     const value = priceAmount * this.props.currency.value;
     return value.toString();
   }
+
+  /*setTotalAmount(quantity: number, salePrice: string, operation: string) {
+    console.log(quantity, salePrice, operation);
+    if (operation === "increment") {     
+      this.state.totalAmount =
+      this.state.totalAmount + parseInt(salePrice) * quantity;
+      console.log(this.state.totalAmount, parseInt(salePrice), quantity);
+      console.log("total", this.state.totalAmount);
+    }
+    if (operation === "decrement") {     
+      this.state.totalAmount =
+      this.state.totalAmount - parseInt(salePrice) * quantity;
+      console.log("total", this.state.totalAmount);
+    }
+  }*/
+
+  incrementTotal(quantity: number, salePrice: string) {
+    quantity = quantity + 1;
+    this.state.totalAmount =
+      this.state.totalAmount + parseInt(salePrice) * quantity;
+    console.log("increment total", this.state.totalAmount, salePrice, quantity);
+  }
+
+  decrementTotal(quantity: number, salePrice: string) {
+    quantity = quantity - 1;
+    this.state.totalAmount =
+      this.state.totalAmount - parseInt(salePrice) * quantity;
+    console.log("decrement total", this.state.totalAmount);
+  }
+
   render() {
     console.log(this.props.cartItems);
     return (
@@ -39,6 +70,21 @@ class CartPage extends React.Component<Props, State> {
             price={this.getCorrectCurrencyValue(item.productPrice)}
             salePrice={this.getCorrectCurrencyValue(item.productSalePrice)}
             currencyCode={this.props.currency.currencyCode}
+            quantity={item.productQty}
+            /*setTotalAmount={() =>
+              this.setTotalAmount(
+                item.productQty,
+                item.productSalePrice,
+                "increment"
+              )
+            }
+            operation="increment"*/
+            incrementTotal={() =>
+              this.incrementTotal(item.productQty, item.productSalePrice)
+            }
+            decrementTotal={() =>
+              this.decrementTotal(item.productQty, item.productSalePrice)
+            }
           />
         ))}
       </div>

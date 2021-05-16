@@ -1,0 +1,5 @@
+setState where can be used? --------inside lifecycle methods, after event trigger call a function and use setState inside that
+you can't change the props inside the component you are using it, you can only use it 
+
+onClick{()=>{ console.log(); func()}  }            //can do any js code inside onClick need not be a single line 
+
