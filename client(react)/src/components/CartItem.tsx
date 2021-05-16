@@ -28,15 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   controls: {
     display: "flex",
-    //   alignItems: "center",
-    //   paddingLeft: theme.spacing(1),
-    //   paddingBottom: theme.spacing(1),
   },
-  // playIcon: {
-  //   height: 30,
-  //   width: 38,
-  // },
-
   button: {
     margin: theme.spacing(1),
     backgroundColor: "#fff",
@@ -78,17 +70,6 @@ const CartItem: React.FC<Props> = ({
           <Typography component="h5" variant="h5">
             {name}
           </Typography>
-
-          {/* <Typography variant="subtitle1" color="textPrimary">
-            {currencyCode}
-            {salePrice}
-            {price}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {currencyCode}
-            {price}
-          </Typography> */}
-
           <ProductPrice
             price={price}
             salePrice={salePrice}

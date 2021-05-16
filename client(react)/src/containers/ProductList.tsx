@@ -55,7 +55,7 @@ class ProductList extends React.Component<Props, State> {
                 btnClick={() => this.addToCart(val)}
                 pdata={val}
                 key={val.productId}
-                currencyCode={this.props.selectedCurrency.currencyCode}
+                currency={this.props.selectedCurrency}
               />
             </Column>
           ))}
