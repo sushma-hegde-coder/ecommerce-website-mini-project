@@ -8,6 +8,7 @@ import Register from "./containers/Register";
 import ProductDetail from "./containers/ProductDetail";
 import ProductList from "./containers/ProductList";
 import CartPage from "./containers/CartPage";
+import SearchPage from "./containers/SearchPage";
 import Banner from "./Banner";
 
 const LazyProfile = React.lazy(() => import("./containers/Profile"));
@@ -25,6 +26,8 @@ const AppRouter: React.FC = (props) => {
             <Route path={"/productdetail/:id"} component={ProductDetail} />
             <Route path={"/register"} component={Register} />
             <Route path={"/cart"} component={CartPage} />
+            <Route path={"/search_product"} component={SearchPage} />
+
             {/* 404 Route */}
             <Route component={ErrorPage} />
           </Switch>

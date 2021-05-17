@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import { flexbox } from "@material-ui/system";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ProductPrice from "./ProductPrice";
@@ -30,9 +31,8 @@ const useStyles = makeStyles((theme) => ({
     width: 175,
   },
   controls: {
-    margin: "1vh",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   textfield: {
     margin: theme.spacing(1),
@@ -107,8 +107,6 @@ const CartItem: React.FC<Props> = ({
                 className={classes.playIcon}
                 onClick={() => {
                   decrementTotal(salePrice, id);
-                  //  setTotalAmount(quantity,salePrice,"decrement"); //you can not do this setTotalAmount(1,2,"decrement")
-                  //whatever is got from parent as props you have to use it and pass it back in order to call parent's function
                 }}
               />
             </IconButton>

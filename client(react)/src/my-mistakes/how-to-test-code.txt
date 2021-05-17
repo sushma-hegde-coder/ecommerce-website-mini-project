@@ -24,6 +24,8 @@ class Test(){
   no need to use "this" here
 
  render(){
+      console.log()
+      
   return(
        HTML
        <h1>hello</h1>
@@ -51,6 +53,7 @@ function Header({ extracting props}) {
      function abc(x: number) {
         console.log("hello", x);
      }
+     
      return ({
           <h1>hjkl</h1>
           {hello}

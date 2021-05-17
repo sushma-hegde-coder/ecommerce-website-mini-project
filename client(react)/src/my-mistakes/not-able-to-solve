@@ -1,2 +1,6 @@
 textbox height is not taking in material ui
-justifyContent is not working flexbox
+justfifyContent is not working in cartItems
+total Amount not able to pass as prop, it should be taken from ProductList pass to Product then to cart..passing at same level not possible
+ ---sould I use redux?
+onsubmit form not able to call a component -Value of type 'typeof SearchPage' is not callable. Did you mean to include 'new'? 
+   TypeError: Class constructor SearchPage cannot be invoked without 'new' -----should use history or redirect?
