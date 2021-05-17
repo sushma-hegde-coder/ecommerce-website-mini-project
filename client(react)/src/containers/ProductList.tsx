@@ -11,6 +11,7 @@ import CartActions from "../store/actions/CartActions";
 import Paginate from "../components/Paginate";
 import LoadingWrapper from "../components/LoadingWrapper";
 import LoadingActions from "../store/actions/LoadingActions";
+import OperationsOnProduct from "../components/OperationsOnProduct";
 
 type Props = {
   selectedCurrency: CurrencyRateType;
@@ -43,11 +44,16 @@ class ProductList extends React.Component<Props, State> {
     this.props.addItem(product); // add to cart logic
     this.props.history.push("/cart"); // redirect to cart page
   }
+
   updateData = (page: number) =>
     this.setState({ pageNumber: page }, () => this.getData());
+
   render() {
     return (
       <LoadingWrapper>
+        <Row>
+          <OperationsOnProduct />
+        </Row>
         <Row>
           {this.state.plist.map((val) => (
             <Column size={3} classes={"my-3"}>

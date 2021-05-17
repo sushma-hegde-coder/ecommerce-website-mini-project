@@ -32,14 +32,14 @@ let ProductController = class ProductController {
     findAll(page = 1, size = 20) {
         return this.productService.findAll(page, size);
     }
-    findByQuery(prodname, page = 1, size = 20) {
+    findByQuery(prodname, page, size) {
         return this.productService.fingByQuery(prodname, page, size);
     }
-    sortByField(field, order, page = 1, size = 20) {
+    sortByField(field, order, page, size) {
         console.log(field, order);
         return this.productService.sort(field, order, page, size);
     }
-    filterByPrice(min, max, page = 1, size = 20) {
+    filterByPrice(min, max, page, size) {
         console.log(min, max);
         return this.productService.filterByPrice(min, max, page, size);
     }
@@ -75,7 +75,7 @@ __decorate([
 ], ProductController.prototype, "findAll", null);
 __decorate([
     common_1.Get("search"),
-    __param(0, common_1.Query("q")),
+    __param(0, common_1.Query("prodname")),
     __param(1, common_1.Query("page")),
     __param(2, common_1.Query("size")),
     __metadata("design:type", Function),

@@ -36,12 +36,12 @@ export class ProductController {
     return this.productService.findAll(page, size);
   }
 
-  //GET: /product/search?query="nuclear"&page=1&size=20
+  //GET: /product/search?prodname="nuclear"&page=1&size=20
   @Get("search")
   findByQuery(
-    @Query("q") prodname: string,
-    @Query("page") page: number = 1,
-    @Query("size") size: number = 20
+    @Query("prodname") prodname: string,
+    @Query("page") page: number,
+    @Query("size") size: number
   ) {
     return this.productService.fingByQuery(prodname, page, size);
   }
@@ -53,8 +53,8 @@ export class ProductController {
   sortByField(
     @Query("field") field: string,
     @Query("order") order: string,
-    @Query("page") page: number = 1,
-    @Query("size") size: number = 20
+    @Query("page") page: number,
+    @Query("size") size: number
   ) {
     console.log(field, order);
     return this.productService.sort(field, order, page, size);
@@ -65,8 +65,8 @@ export class ProductController {
   filterByPrice(
     @Query("min") min: number,
     @Query("max") max: number,
-    @Query("page") page: number = 1,
-    @Query("size") size: number = 20
+    @Query("page") page: number,
+    @Query("size") size: number
   ) {
     console.log(min, max);
     return this.productService.filterByPrice(min, max, page, size);

@@ -15,19 +15,19 @@ export declare class ProductController {
         currentPage: number;
         totalPages: number;
     }>;
-    findByQuery(prodname: string, page?: number, size?: number): Promise<{
+    findByQuery(prodname: string, page: number, size: number): Promise<{
         totalItems: number;
         data: import("./entities/product.entity").Product[];
         currentPage: number;
         totalPages: number;
     }>;
-    sortByField(field: string, order: string, page?: number, size?: number): Promise<[import("./entities/product.entity").Product[], number]> | Promise<{
+    sortByField(field: string, order: string, page: number, size: number): Promise<{
         totalItems: number;
         data: import("./entities/product.entity").Product[];
         currentPage: number;
         totalPages: number;
     }>;
-    filterByPrice(min: number, max: number, page?: number, size?: number): Promise<{
+    filterByPrice(min: number, max: number, page: number, size: number): Promise<{
         totalItems: number;
         data: import("./entities/product.entity").Product[];
         currentPage: number;

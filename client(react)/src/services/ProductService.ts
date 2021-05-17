@@ -18,7 +18,7 @@ const sortByParameter = (
   page: number,
   size: number
 ) => {
-  const url = `${constants.BASE_URL}/product/sort?field=${field}&order=${order}&page=${page}&size={size}`;
+  const url = `${constants.BASE_URL}/product/sort?field=${field}&order=${order}&page=${page}&size=${size}`;
   return axios.get<ProductResponseType>(url);
 };
 

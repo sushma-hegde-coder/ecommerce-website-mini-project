@@ -43,22 +43,36 @@ let ProductService = class ProductService {
     }
     sort(field, order, page, size) {
         if (field === "price" && order === "ascending")
-            return this.productRepository.findAndCount({
+            return this.productRepository
+                .findAndCount({
                 order: {
                     productPrice: "ASC",
                 },
                 take: size,
                 skip: (page - 1) * size,
-            });
+            })
+                .then((res) => ({
+                totalItems: res[1],
+                data: res[0],
+                currentPage: page,
+                totalPages: Math.ceil(res[1] / size),
+            }));
         else if (field === "price" && order === "descending")
-            return this.productRepository.findAndCount({
+            return this.productRepository
+                .findAndCount({
                 order: {
                     productPrice: "DESC",
                 },
                 take: size,
                 skip: (page - 1) * size,
-            });
-        else if (field === "name")
+            })
+                .then((res) => ({
+                totalItems: res[1],
+                data: res[0],
+                currentPage: page,
+                totalPages: Math.ceil(res[1] / size),
+            }));
+        else if (field === "name" && order === "ascending")
             return this.productRepository
                 .findAndCount({
                 order: {

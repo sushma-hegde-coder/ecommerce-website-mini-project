@@ -15,7 +15,7 @@ export declare class ProductService {
         currentPage: number;
         totalPages: number;
     }>;
-    sort(field: string, order: string, page: number, size: number): Promise<[Product[], number]> | Promise<{
+    sort(field: string, order: string, page: number, size: number): Promise<{
         totalItems: number;
         data: Product[];
         currentPage: number;

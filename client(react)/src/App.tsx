@@ -14,6 +14,8 @@ import Header from "./containers/Header";
 import LoginButtons from "./components/LoginButtons";
 import RegisterButton from "./components/RegisterButton";
 import CartButton from "./components/CartButton";
+import OperationsOnProduct from "./components/OperationsOnProduct";
+
 type State = {
   theme: "light" | "dark";
 };
@@ -30,6 +32,7 @@ class App extends React.Component<{}, State> {
           <LoginButtons />
           <RegisterButton />
         </Header>
+
         <ThemeContext.Provider value={theme}>
           <AppRouter />
         </ThemeContext.Provider>

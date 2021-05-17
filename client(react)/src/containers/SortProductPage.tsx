@@ -26,7 +26,7 @@ type State = {
   pageSize: number;
 };
 
-class SearchPage extends React.Component<Props, State> {
+class SortProductPage extends React.Component<Props, State> {
   state: State = {
     plist: [],
     totalPages: 0,
@@ -41,12 +41,12 @@ class SearchPage extends React.Component<Props, State> {
   async getData() {
     try {
       this.props.showLoader();
-      const { data } = await ProductService.searchByProductName(
-        history.state.state.prodname,
+      const { data } = await ProductService.sortByParameter(
+        history.state.state.field,
+        history.state.state.order,
         this.state.pageNumber,
         this.state.pageSize
       );
-      console.log("prod data", data);
       this.setState({
         plist: data.data,
         totalPages: data.totalPages,
@@ -69,7 +69,8 @@ class SearchPage extends React.Component<Props, State> {
 
   render() {
     console.log(location.pathname);
-    console.log(history.state.state.prodname); //most important, when a parameter is passed by using history, you can access it using this method. No need of any HOC withRouter
+    console.log(history.state.state.field); //most important, when a parameter is passed by using history, you can access it using this method. No need of any HOC withRouter
+    console.log(history.state.state.order);
     return (
       <LoadingWrapper>
         <Row>
@@ -109,4 +110,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(mapStoreToProps, mapDispatchToProps)(SearchPage);
+export default connect(mapStoreToProps, mapDispatchToProps)(SortProductPage);
