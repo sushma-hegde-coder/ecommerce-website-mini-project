@@ -18,7 +18,7 @@ const sortByParameter = (
   page: number,
   size: number
 ) => {
-  const url = `${constants.BASE_URL}/product?field=${field}&order=${order}&page=${page}&size={size}`;
+  const url = `${constants.BASE_URL}/product/sort?field=${field}&order=${order}&page=${page}&size={size}`;
   return axios.get<ProductResponseType>(url);
 };
 
@@ -28,12 +28,12 @@ const filterByPrice = (
   page: number,
   size: number
 ) => {
-  const url = `${constants.BASE_URL}/product?min=${min}&max=${max}&page=${page}&size=${size}`;
+  const url = `${constants.BASE_URL}/product/filter?min=${min}&max=${max}&page=${page}&size=${size}`;
   return axios.get<ProductResponseType>(url);
 };
 
 const searchByProductName = (prodname: string, page: number, size: number) => {
-  const url = `${constants.BASE_URL}/product?prodname=${prodname}&page=${page}&size=${size}`;
+  const url = `${constants.BASE_URL}/product/search?prodname=${prodname}&page=${page}&size=${size}`;
   return axios.get<ProductResponseType>(url);
 };
 
