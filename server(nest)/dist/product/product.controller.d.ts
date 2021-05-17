@@ -15,12 +15,24 @@ export declare class ProductController {
         currentPage: number;
         totalPages: number;
     }>;
-    findByQuery(query: string): Promise<{
+    findByQuery(prodname: string, page?: number, size?: number): Promise<{
         totalItems: number;
         data: import("./entities/product.entity").Product[];
+        currentPage: number;
+        totalPages: number;
     }>;
-    sortByField(field: string, order: string): Promise<import("./entities/product.entity").Product[]>;
-    filterByPrice(min: number, max: number): Promise<import("./entities/product.entity").Product[]>;
+    sortByField(field: string, order: string, page?: number, size?: number): Promise<[import("./entities/product.entity").Product[], number]> | Promise<{
+        totalItems: number;
+        data: import("./entities/product.entity").Product[];
+        currentPage: number;
+        totalPages: number;
+    }>;
+    filterByPrice(min: number, max: number, page?: number, size?: number): Promise<{
+        totalItems: number;
+        data: import("./entities/product.entity").Product[];
+        currentPage: number;
+        totalPages: number;
+    }>;
     findOne(id: string): Promise<import("./entities/product.entity").Product>;
     update(id: string, updateProductDto: UpdateProductDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;

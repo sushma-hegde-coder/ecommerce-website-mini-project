@@ -15,11 +15,23 @@ export declare class ProductService {
         currentPage: number;
         totalPages: number;
     }>;
-    sort(field: string, order: string): Promise<Product[]>;
-    filterByPrice(min: number, max: number): Promise<Product[]>;
-    fingByQuery(query: string): Promise<{
+    sort(field: string, order: string, page: number, size: number): Promise<[Product[], number]> | Promise<{
         totalItems: number;
         data: Product[];
+        currentPage: number;
+        totalPages: number;
+    }>;
+    filterByPrice(min: number, max: number, page: number, size: number): Promise<{
+        totalItems: number;
+        data: Product[];
+        currentPage: number;
+        totalPages: number;
+    }>;
+    fingByQuery(prodname: string, page: number, size: number): Promise<{
+        totalItems: number;
+        data: Product[];
+        currentPage: number;
+        totalPages: number;
     }>;
     findOne(id: number): Promise<Product>;
     update(id: number, updateProductDto: UpdateProductDto): Promise<import("typeorm").UpdateResult>;

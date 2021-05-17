@@ -41,38 +41,67 @@ let ProductService = class ProductService {
             totalPages: Math.ceil(res[1] / size),
         }));
     }
-    sort(field, order) {
+    sort(field, order, page, size) {
         if (field === "price" && order === "ascending")
-            return this.productRepository.find({
+            return this.productRepository.findAndCount({
                 order: {
                     productPrice: "ASC",
                 },
+                take: size,
+                skip: (page - 1) * size,
             });
         else if (field === "price" && order === "descending")
-            return this.productRepository.find({
+            return this.productRepository.findAndCount({
                 order: {
                     productPrice: "DESC",
                 },
+                take: size,
+                skip: (page - 1) * size,
             });
         else if (field === "name")
-            return this.productRepository.find({
+            return this.productRepository
+                .findAndCount({
                 order: {
                     productName: "ASC",
                 },
-            });
+                take: size,
+                skip: (page - 1) * size,
+            })
+                .then((res) => ({
+                totalItems: res[1],
+                data: res[0],
+                currentPage: page,
+                totalPages: Math.ceil(res[1] / size),
+            }));
     }
-    filterByPrice(min, max) {
-        return this.productRepository.find({
-            where: { productPrice: typeorm_2.Between(min, max) },
-        });
-    }
-    fingByQuery(query) {
+    filterByPrice(min, max, page, size) {
         return this.productRepository
             .findAndCount({
-            where: { productName: typeorm_2.Like(`%${query}%`) },
-            order: { productId: "ASC" },
+            where: { productPrice: typeorm_2.Between(min, max) },
+            take: size,
+            skip: (page - 1) * size,
         })
-            .then((d) => ({ totalItems: d[1], data: d[0] }));
+            .then((res) => ({
+            totalItems: res[1],
+            data: res[0],
+            currentPage: page,
+            totalPages: Math.ceil(res[1] / size),
+        }));
+    }
+    fingByQuery(prodname, page, size) {
+        return this.productRepository
+            .findAndCount({
+            where: { productName: typeorm_2.Like(`%${prodname}%`) },
+            order: { productId: "ASC" },
+            take: size,
+            skip: (page - 1) * size,
+        })
+            .then((res) => ({
+            totalItems: res[1],
+            data: res[0],
+            currentPage: page,
+            totalPages: Math.ceil(res[1] / size),
+        }));
     }
     findOne(id) {
         return this.productRepository.findOne(id).then((data) => {

@@ -36,25 +36,40 @@ export class ProductController {
     return this.productService.findAll(page, size);
   }
 
+  //GET: /product/search?query="nuclear"&page=1&size=20
   @Get("search")
-  findByQuery(@Query("q") query: string) {
-    return this.productService.fingByQuery(query);
+  findByQuery(
+    @Query("q") prodname: string,
+    @Query("page") page: number = 1,
+    @Query("size") size: number = 20
+  ) {
+    return this.productService.fingByQuery(prodname, page, size);
   }
 
   //query parameter
-  //GET : /?field=price&order=ascending
-  //GET: /?field=name&order=none -- for sort
+  //GET : /product?field=price&order=ascending&page=1&size=20
+  //GET: /product?field=name&order=none&page=1&size=20 -- for sort by name
   @Get("sort")
-  sortByField(@Query("field") field: string, @Query("order") order: string) {
+  sortByField(
+    @Query("field") field: string,
+    @Query("order") order: string,
+    @Query("page") page: number = 1,
+    @Query("size") size: number = 20
+  ) {
     console.log(field, order);
-    return this.productService.sort(field, order);
+    return this.productService.sort(field, order, page, size);
   }
 
   //GET: /?min=1000&max=5000
   @Get("filter")
-  filterByPrice(@Query("min") min: number, @Query("max") max: number) {
+  filterByPrice(
+    @Query("min") min: number,
+    @Query("max") max: number,
+    @Query("page") page: number = 1,
+    @Query("size") size: number = 20
+  ) {
     console.log(min, max);
-    return this.productService.filterByPrice(min, max);
+    return this.productService.filterByPrice(min, max, page, size);
   }
 
   @ApiNotFoundResponse({ description: "No data is found for the specified ID" })

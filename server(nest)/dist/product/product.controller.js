@@ -32,16 +32,16 @@ let ProductController = class ProductController {
     findAll(page = 1, size = 20) {
         return this.productService.findAll(page, size);
     }
-    findByQuery(query) {
-        return this.productService.fingByQuery(query);
+    findByQuery(prodname, page = 1, size = 20) {
+        return this.productService.fingByQuery(prodname, page, size);
     }
-    sortByField(field, order) {
+    sortByField(field, order, page = 1, size = 20) {
         console.log(field, order);
-        return this.productService.sort(field, order);
+        return this.productService.sort(field, order, page, size);
     }
-    filterByPrice(min, max) {
+    filterByPrice(min, max, page = 1, size = 20) {
         console.log(min, max);
-        return this.productService.filterByPrice(min, max);
+        return this.productService.filterByPrice(min, max, page, size);
     }
     findOne(id) {
         return this.productService.findOne(+id);
@@ -76,22 +76,30 @@ __decorate([
 __decorate([
     common_1.Get("search"),
     __param(0, common_1.Query("q")),
+    __param(1, common_1.Query("page")),
+    __param(2, common_1.Query("size")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Number, Number]),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "findByQuery", null);
 __decorate([
     common_1.Get("sort"),
-    __param(0, common_1.Query("field")), __param(1, common_1.Query("order")),
+    __param(0, common_1.Query("field")),
+    __param(1, common_1.Query("order")),
+    __param(2, common_1.Query("page")),
+    __param(3, common_1.Query("size")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [String, String, Number, Number]),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "sortByField", null);
 __decorate([
     common_1.Get("filter"),
-    __param(0, common_1.Query("min")), __param(1, common_1.Query("max")),
+    __param(0, common_1.Query("min")),
+    __param(1, common_1.Query("max")),
+    __param(2, common_1.Query("page")),
+    __param(3, common_1.Query("size")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number, Number, Number, Number]),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "filterByPrice", null);
 __decorate([

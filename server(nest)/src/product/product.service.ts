@@ -38,40 +38,69 @@ export class ProductService {
       }));
   }
 
-  sort(field: string, order: string) {
+  sort(field: string, order: string, page: number, size: number) {
     if (field === "price" && order === "ascending")
-      return this.productRepository.find({
+      return this.productRepository.findAndCount({
         order: {
           productPrice: "ASC",
         },
+        take: size,
+        skip: (page - 1) * size,
       });
     else if (field === "price" && order === "descending")
-      return this.productRepository.find({
+      return this.productRepository.findAndCount({
         order: {
           productPrice: "DESC",
         },
+        take: size,
+        skip: (page - 1) * size,
       });
     else if (field === "name")
-      return this.productRepository.find({
-        order: {
-          productName: "ASC",
-        },
-      });
+      return this.productRepository
+        .findAndCount({
+          order: {
+            productName: "ASC",
+          },
+          take: size,
+          skip: (page - 1) * size,
+        })
+        .then((res) => ({
+          totalItems: res[1],
+          data: res[0],
+          currentPage: page,
+          totalPages: Math.ceil(res[1] / size),
+        }));
   }
 
-  filterByPrice(min: number, max: number) {
-    return this.productRepository.find({
-      where: { productPrice: Between(min, max) },
-    });
-  }
-
-  fingByQuery(query: string) {
+  filterByPrice(min: number, max: number, page: number, size: number) {
     return this.productRepository
       .findAndCount({
-        where: { productName: Like(`%${query}%`) },
-        order: { productId: "ASC" },
+        where: { productPrice: Between(min, max) },
+        take: size,
+        skip: (page - 1) * size,
       })
-      .then((d) => ({ totalItems: d[1], data: d[0] }));
+      .then((res) => ({
+        totalItems: res[1],
+        data: res[0],
+        currentPage: page,
+        totalPages: Math.ceil(res[1] / size),
+      }));
+  }
+
+  fingByQuery(prodname: string, page: number, size: number) {
+    return this.productRepository
+      .findAndCount({
+        where: { productName: Like(`%${prodname}%`) },
+        order: { productId: "ASC" },
+        take: size,
+        skip: (page - 1) * size,
+      })
+      .then((res) => ({
+        totalItems: res[1],
+        data: res[0],
+        currentPage: page,
+        totalPages: Math.ceil(res[1] / size),
+      }));
   }
 
   findOne(id: number) {
