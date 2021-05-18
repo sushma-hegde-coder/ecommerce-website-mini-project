@@ -43,7 +43,7 @@ export class ProductService {
       return this.productRepository
         .findAndCount({
           order: {
-            productPrice: "ASC",
+            productSalePrice: "ASC",
           },
           take: size,
           skip: (page - 1) * size,
@@ -58,7 +58,7 @@ export class ProductService {
       return this.productRepository
         .findAndCount({
           order: {
-            productPrice: "DESC",
+            productSalePrice: "DESC",
           },
           take: size,
           skip: (page - 1) * size,

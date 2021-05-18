@@ -49,7 +49,7 @@ class Product extends React.Component<ProductProps> {
         <h5 className={"mt-4"}>{formatter.titlecase(pdata.productName)}</h5>
         <ProductPrice
           price={this.getCorrectCurrencyValue(
-            this.convertStringToInt(pdata.productSalePrice)
+            this.convertStringToInt(pdata.productPrice)
           )}
           salePrice={this.getCorrectCurrencyValue(
             this.convertStringToInt(pdata.productSalePrice)

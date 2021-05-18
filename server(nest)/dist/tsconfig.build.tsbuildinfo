@@ -3182,7 +3182,7 @@
         "affectsGlobalScope": false
       },
       "../src/product/product.service.ts": {
-        "version": "c86dde27a7109a3269c82b99c8df34127744eac845235ea996f86ab696f052a6",
+        "version": "467661b817d05f0d02665b5977a5d9a9e8010f7798d6c8269b556ee0169d4314",
         "signature": "5c36689452ae3880e1267303854fa81e7a11549e48351a505b11d3ebd672abba",
         "affectsGlobalScope": false
       },
@@ -3517,7 +3517,7 @@
         "affectsGlobalScope": false
       },
       "../src/product/product.controller.ts": {
-        "version": "75054d5f8eebe59512002e73e46eeac9bd2c26e6ec79b6b07589e1e83d9da2a0",
+        "version": "0a54ca4740ddc21af31812c382117264d1ab08514d755a3ea1af4dc875257b1c",
         "signature": "ff4af62b7600452576477a1c3eee797468a70e5197c43336e909cf70c841f0e5",
         "affectsGlobalScope": false
       },

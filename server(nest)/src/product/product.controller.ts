@@ -48,7 +48,7 @@ export class ProductController {
 
   //query parameter
   //GET : /product?field=price&order=ascending&page=1&size=20
-  //GET: /product?field=name&order=none&page=1&size=20 -- for sort by name
+  //GET: /product?field=name&order=ascending&page=1&size=20 -- for sort by name
   @Get("sort")
   sortByField(
     @Query("field") field: string,

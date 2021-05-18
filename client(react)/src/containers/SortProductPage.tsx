@@ -52,6 +52,7 @@ class SortProductPage extends React.Component<Props, State> {
         totalPages: data.totalPages,
         pageNumber: data.currentPage,
       });
+      console.log("sorted data is ", this.state.plist);
       this.props.hideLoader();
     } catch (e) {
       console.log("error", e);

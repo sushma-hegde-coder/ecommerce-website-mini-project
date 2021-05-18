@@ -7,5 +7,5 @@ lifecycle method execution
 when state changes, re-rendering happens
       render
 
-so when updation in state happens render may be called again internally
+so when updation in state happens render may be called again internally only stmts inside render called not return 
 
