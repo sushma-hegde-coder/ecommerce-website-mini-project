@@ -10,5 +10,8 @@ This is a mini project of Shop App
 ## Login Page
 ![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/login.png?raw=true)
 
-## Cart 
+## Register Page
+
+
+## Cart Page
 ![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/cart.png?raw=true)
