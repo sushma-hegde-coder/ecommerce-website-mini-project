@@ -62,3 +62,28 @@ export type parentArrayType = {
   currencyRateObject: ExchangeCurrencyType;
   currencyRate: Map<string, number>;
 };
+
+export type customerType = {
+  userName: string;
+  userEmail: string;
+  userPassword: string;
+  createdAt: Date;
+  userId: string;
+};
+
+export type userType = {
+  email: string;
+  password: string;
+  name: string;
+};
+
+export type AddressType = {
+  city: string;
+  line1: string;
+  line2: string;
+  pincode: number;
+  state: string;
+  user: customerType;
+  createdAt: string;
+  id: number;
+};

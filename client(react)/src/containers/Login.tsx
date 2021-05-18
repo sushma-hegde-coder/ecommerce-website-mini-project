@@ -13,6 +13,7 @@ import LoadingActions from "../store/actions/LoadingActions";
 import UserActions from "../store/actions/UserActions";
 import { StoreType } from "../types";
 import formatter from "../utils/formatter";
+import RegisterButton from "../components/RegisterButton";
 type LoginProps = {
   signinSuccess: (user: object) => void;
   signinError: (error: string) => void;
@@ -73,6 +74,8 @@ class Login extends React.Component<LoginProps, LoginState> {
               <button className={"btn btn-success w-100 text-uppercase"}>
                 Login
               </button>
+              <small className="text-muted">New to Shop App?</small>
+              <RegisterButton />
             </form>
           </Column>
         </Row>

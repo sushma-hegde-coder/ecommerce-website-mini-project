@@ -17,6 +17,11 @@ class CreateUserDto {
 __decorate([
     swagger_1.ApiProperty(),
     class_validator_1.IsNotEmpty(),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "name", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    class_validator_1.IsNotEmpty(),
     class_validator_1.IsEmail(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
@@ -25,10 +30,5 @@ __decorate([
     class_validator_1.IsNotEmpty(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
-__decorate([
-    swagger_1.ApiProperty(),
-    class_validator_1.IsNotEmpty(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "name", void 0);
 exports.CreateUserDto = CreateUserDto;
 //# sourceMappingURL=create-user.dto.js.map

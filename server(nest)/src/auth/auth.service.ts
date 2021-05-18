@@ -1,15 +1,15 @@
-import { HttpException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
-import { UserService } from './user/user.service';
-import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
-import constants from './constants';
+import { HttpException, Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { LoginDto } from "./dto/login.dto";
+import { UserService } from "./user/user.service";
+import * as bcrypt from "bcrypt";
+import { JwtService } from "@nestjs/jwt";
+import constants from "./constants";
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,
+    private jwtService: JwtService
   ) {}
   // authentication related logic
   registerUser(userDto: CreateUserDto) {
@@ -21,11 +21,11 @@ export class AuthService {
       const { email, password } = loginDto;
       const user = await this.userService.findByEmail(email);
       if (!user) {
-        throw new HttpException({ message: 'User not found' }, 400);
+        throw new HttpException({ message: "User not found" }, 400);
       }
       const isVerified = await bcrypt.compare(password, user.userPassword);
       if (!isVerified) {
-        throw new HttpException({ message: 'Invalid login details' }, 400);
+        throw new HttpException({ message: "Invalid login details" }, 400);
       }
       return Promise.resolve(user);
     } catch (e) {
@@ -40,7 +40,7 @@ export class AuthService {
       // generate token
       const token = this.jwtService.sign(payload);
       return Promise.resolve({
-        message: 'Login successful',
+        message: "Login successful",
         access_token: token,
         expiresIn: constants.EXPIRATION_TIME * 60,
       });

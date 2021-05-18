@@ -1,4 +1,5 @@
-import { Address } from 'src/address/entities/address.entity';
+import { Address } from "src/address/entities/address.entity";
+import { OrderEntity } from "src/order/entities/order.entity";
 export declare class UserEntity {
     userId: string;
     userName: string;
@@ -7,4 +8,5 @@ export declare class UserEntity {
     createdAt: Date;
     hashPassword(): Promise<void>;
     address: Address[];
+    order: OrderEntity[];
 }

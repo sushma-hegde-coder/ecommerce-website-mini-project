@@ -22,7 +22,7 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "productName", void 0);
 __decorate([
-    typeorm_1.Column({ default: 0, type: 'decimal' }),
+    typeorm_1.Column({ default: 0, type: "decimal" }),
     __metadata("design:type", Number)
 ], Product.prototype, "productPrice", void 0);
 __decorate([
@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "productImage", void 0);
 __decorate([
-    typeorm_1.Column({ default: 0, type: 'decimal' }),
+    typeorm_1.Column({ default: 0, type: "decimal" }),
     __metadata("design:type", Number)
 ], Product.prototype, "productSalePrice", void 0);
 __decorate([
@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "productStock", void 0);
 Product = __decorate([
-    typeorm_1.Entity({ name: 'products' })
+    typeorm_1.Entity({ name: "products" })
 ], Product);
 exports.Product = Product;
 //# sourceMappingURL=product.entity.js.map

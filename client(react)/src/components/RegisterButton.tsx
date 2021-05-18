@@ -4,7 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 function RegisterButton() {
   return (
     <div>
-      <Link className="btn btn-sm btn-outline-primary mx-2" to={"/register"}>
+      <Link
+        className="btn btn-sm btn-outline-primary mt-3 w-100"
+        to={"/register"}
+      >
         Register
       </Link>
     </div>

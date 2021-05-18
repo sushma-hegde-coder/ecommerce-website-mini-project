@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity({ name: 'products' })
+@Entity({ name: "products" })
 export class Product {
   @PrimaryGeneratedColumn()
   productId: number;
@@ -8,13 +8,13 @@ export class Product {
   @Column({ nullable: false })
   productName: string;
 
-  @Column({ default: 0, type: 'decimal' })
+  @Column({ default: 0, type: "decimal" })
   productPrice: number;
 
   @Column({ nullable: false })
   productImage: string;
 
-  @Column({ default: 0, type: 'decimal' })
+  @Column({ default: 0, type: "decimal" })
   productSalePrice: number;
 
   @Column({ default: 10 })

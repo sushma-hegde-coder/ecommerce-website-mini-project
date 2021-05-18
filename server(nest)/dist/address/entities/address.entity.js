@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = void 0;
 const user_entity_1 = require("../../auth/entities/user.entity");
+const order_entity_1 = require("../../order/entities/order.entity");
 const typeorm_1 = require("typeorm");
 let Address = class Address {
 };
@@ -43,11 +44,16 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "createdAt", void 0);
 __decorate([
-    typeorm_1.ManyToOne((type) => user_entity_1.UserEntity, (user) => user.userId),
+    typeorm_1.ManyToOne((type) => user_entity_1.UserEntity, (user) => user.address),
     __metadata("design:type", user_entity_1.UserEntity)
 ], Address.prototype, "user", void 0);
+__decorate([
+    typeorm_1.OneToOne(() => order_entity_1.OrderEntity, (order) => order.address),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", order_entity_1.OrderEntity)
+], Address.prototype, "order", void 0);
 Address = __decorate([
-    typeorm_1.Entity()
+    typeorm_1.Entity({ name: "address" })
 ], Address);
 exports.Address = Address;
 //# sourceMappingURL=address.entity.js.map

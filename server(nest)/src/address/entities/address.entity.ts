@@ -1,13 +1,16 @@
 import { UserEntity } from "src/auth/entities/user.entity";
+import { OrderEntity } from "src/order/entities/order.entity";
 import {
   BeforeInsert,
   Column,
   Entity,
   ManyToOne,
+  OneToOne,
+  JoinColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
-@Entity()
+@Entity({ name: "address" })
 export class Address {
   @PrimaryGeneratedColumn()
   id: number;
@@ -31,6 +34,10 @@ export class Address {
   createdAt: string;
 
   // many addresses will be for one user entity
-  @ManyToOne((type) => UserEntity, (user) => user.userId)
+  @ManyToOne((type) => UserEntity, (user) => user.address)
   user: UserEntity;
+
+  @OneToOne(() => OrderEntity, (order) => order.address) // specify inverse side as a second parameter
+  @JoinColumn()
+  order: OrderEntity;
 }

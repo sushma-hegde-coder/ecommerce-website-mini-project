@@ -4,13 +4,14 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
-} from 'typeorm';
-import * as bcrypt from 'bcrypt';
-import { Address } from 'src/address/entities/address.entity';
+} from "typeorm";
+import * as bcrypt from "bcrypt";
+import { Address } from "src/address/entities/address.entity";
+import { OrderEntity } from "src/order/entities/order.entity";
 
-@Entity({ name: 'user' })
+@Entity({ name: "user" })
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   userId: string;
 
   @Column({ nullable: false })
@@ -22,7 +23,7 @@ export class UserEntity {
   @Column({ nullable: false })
   userPassword: string; // plain text password
 
-  @Column({ type: 'datetime' })
+  @Column({ type: "datetime" })
   createdAt: Date;
 
   // hooks : tasks to be executed
@@ -35,4 +36,7 @@ export class UserEntity {
   // one user will have many addressess
   @OneToMany(() => Address, (address) => address.user)
   address: Address[];
+
+  @OneToMany(() => OrderEntity, (order) => order.user)
+  order: OrderEntity[];
 }

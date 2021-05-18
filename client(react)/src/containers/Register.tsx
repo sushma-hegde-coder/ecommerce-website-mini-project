@@ -3,110 +3,80 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
-  //   const [user, setUser] = useState({
-  //     name: "",
-  //     username: "",
-  //     email: "",
-  //     phone: "",
-  //     website: ""
-  //   });
+  let history = useHistory();
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  // const [allusers, setAllUsers] = useState([]);
+  const { name, email, password } = user;
 
-  //   const { name, username, email, phone, website } = user;
-  //   const onInputChange = e => {
-  //     setUser({ ...user, [e.target.name]: e.target.value });
-  //   };
+  const onInputChange = (e: any) => {
+    console.log(e.target.value);
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
-  //   const onSubmit = async e => {
-  //     e.preventDefault();
-  //     console.log("users"+JSON.stringify(user));
-  //     var user_array=[user, ...allusers];
-  //     console.log("User array new var"+JSON.stringify(user_array));
-  //     setAllUsers(user_array);
-  //     console.log(typeof allusers);
-
-  //     console.log("All users"+JSON.stringify(allusers));
-  //     };
-
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log(email, password, name);
+    await axios.post("http://localhost:5000/auth/register", user);
+    console.log("helo");
+    history.push("/login");
+  };
   return (
     <div className="container">
-      <form>
-        <div className="w-75 mx-auto mt-5 shadow p-5">
-          <h2 className="text-center mb-2">Add A User</h2>
-          <div className="form-group">
+      <div className="w-50 mx-auto shadow p-3">
+        <h4 className="text-center mb-4 mt-3">Create Account</h4>
+        <form>
+          <div className="form-group m-3">
+            <label>Your Name</label>
             <input
               type="text"
-              className="form-control form-control-lg"
+              className="form-control"
               placeholder="Enter Your Name"
               name="name"
-              value="name"
+              value={name}
+              onChange={(e) => onInputChange(e)}
             />
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter Your Username"
-              name="username"
-              value="username"
-            />
-          </div>
-          <div className="form-group">
+          <div className="form-group m-3">
+            <label>Email address</label>
             <input
               type="email"
-              className="form-control form-control-lg"
-              placeholder="Enter Your E-mail Address"
+              className="form-control"
+              placeholder="xyz@abc.com"
               name="email"
-              value="email"
+              value={email}
+              onChange={(e) => onInputChange(e)}
             />
+            <small id="emailHelp" className="form-text text-muted">
+              We'll never share your email with anyone else.
+            </small>
           </div>
-          <div className="form-group">
+          <div className="form-group m-3">
+            <label>Password</label>
             <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter Your Phone Number"
-              name="phone"
-              value="phone"
+              type="password"
+              className="form-control"
+              placeholder="Enter Your Password"
+              name="password"
+              value={password}
+              onChange={(e) => onInputChange(e)}
             />
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter Your Website Name"
-              name="website"
-              value="website"
-            />
-          </div>
-        </div>
 
-        <div className="container">
-          <div className="py-4">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">User Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Phone no</th>
-                  <th scope="col">web site</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>name</td>
-                  <td>username</td>
-                  <td>item.email</td>
-                  <td>item.phone</td>
-                  <td>item.website</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="text-center">
+            <button
+              type="button"
+              className="btn btn-primary m-4"
+              onClick={(e) => onSubmit(e)}
+            >
+              Register
+            </button>
           </div>
-        </div>
-        <button className="btn btn-primary btn-block">Add User</button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

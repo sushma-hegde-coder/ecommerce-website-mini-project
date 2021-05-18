@@ -1,6 +1,5 @@
 import React from "react";
 import UserService from "../services/UserService";
-
 import { withStyles, Theme } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,8 +8,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import InboxIcon from "@material-ui/icons/Inbox";
 import { flexbox } from "@material-ui/system";
+import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
@@ -21,10 +22,25 @@ const styles = (theme: Theme) => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
+    //backgroundColor: theme.palette.background.paper,
   },
   profile_detail: {
     display: "flex",
+  },
+  field: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  info: {
+    display: "flex",
+    //flexDirection: "column",
+    // justifyContent: "center",
+    //  justifyContent: "space-around",
+    width: "70vw",
+    height: "100vh",
+    marginLeft: "3vh",
+    marginRight: "6vh",
   },
   avatar: {
     backgroundColor: red[500],
@@ -118,7 +134,31 @@ class Profile extends React.Component<any, any> {
           </List>
         </div>
         <div>
-          <h1>Hello</h1>
+          <Card className={classes.info}>
+            <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                Personal Information
+              </Typography>
+              <hr />
+              <div className={classes.field}>
+                <Typography variant="h6" component="h6" color="textSecondary">
+                  Name
+                </Typography>
+                <Typography variant="h6" component="h6" color="textSecondary">
+                  {this.state.userName}
+                </Typography>
+              </div>
+              <div className={classes.field}>
+                <Typography variant="h6" component="h6" color="textSecondary">
+                  Email Address
+                </Typography>
+                <Typography variant="h6" component="h6" color="textSecondary">
+                  {" ..............   " + this.state.userEmail}
+                </Typography>
+              </div>
+              <button>Add address</button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );

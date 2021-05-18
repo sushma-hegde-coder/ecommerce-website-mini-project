@@ -28,11 +28,11 @@ let AuthService = class AuthService {
             const { email, password } = loginDto;
             const user = await this.userService.findByEmail(email);
             if (!user) {
-                throw new common_1.HttpException({ message: 'User not found' }, 400);
+                throw new common_1.HttpException({ message: "User not found" }, 400);
             }
             const isVerified = await bcrypt.compare(password, user.userPassword);
             if (!isVerified) {
-                throw new common_1.HttpException({ message: 'Invalid login details' }, 400);
+                throw new common_1.HttpException({ message: "Invalid login details" }, 400);
             }
             return Promise.resolve(user);
         }
@@ -45,7 +45,7 @@ let AuthService = class AuthService {
             const payload = { sub: user.userId, email: user.userEmail };
             const token = this.jwtService.sign(payload);
             return Promise.resolve({
-                message: 'Login successful',
+                message: "Login successful",
                 access_token: token,
                 expiresIn: constants_1.default.EXPIRATION_TIME * 60,
             });
