@@ -30,7 +30,7 @@ const mapStoreToProps = (store: StoreType) => {
 };
 
 class CartPage extends React.Component<Props, State> {
-  state: State = { totalAmount: 0 };
+  state: State = { totalAmount: history.state.state.totalAmount };
   getCorrectCurrencyValue(priceAmount: number) {
     //convert to correct currency value by doing calculation
     const value = priceAmount * this.props.currency.value;
@@ -74,6 +74,7 @@ class CartPage extends React.Component<Props, State> {
 
   render() {
     console.log(this.props.cartItems);
+    console.log("pushed totoal", history.state.state.totalAmount); //very very important
     return (
       <div className="cart">
         <div>

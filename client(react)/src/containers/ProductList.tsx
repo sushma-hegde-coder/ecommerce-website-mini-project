@@ -19,9 +19,14 @@ type Props = {
   hideLoader: () => void;
   addItem: (product: ProductType) => void;
 } & RouteComponentProps;
-type State = { plist: ProductType[]; totalPages: number; pageNumber: number };
+type State = {
+  plist: ProductType[];
+  totalPages: number;
+  pageNumber: number;
+  totalAmount: number;
+};
 class ProductList extends React.Component<Props, State> {
-  state: State = { plist: [], totalPages: 0, pageNumber: 1 };
+  state: State = { plist: [], totalPages: 0, pageNumber: 1, totalAmount: 0 };
   componentDidMount() {
     this.getData();
   }
@@ -40,9 +45,21 @@ class ProductList extends React.Component<Props, State> {
       this.props.hideLoader();
     }
   }
+
+  clickAction(val: ProductType, amount: number) {
+    let sum: number = parseInt(val.productSalePrice) + this.state.totalAmount;
+    this.setState({ totalAmount: sum }, () => {
+      this.addToCart(val);
+    });
+  }
+
   addToCart(product: ProductType) {
     this.props.addItem(product); // add to cart logic
-    this.props.history.push("/cart"); // redirect to cart page
+    console.log("state value", this.state.totalAmount);
+    this.props.history.push({
+      pathname: "/cart",
+      state: { totalAmount: this.state.totalAmount },
+    }); // redirect to cart page
   }
 
   updateData = (page: number) =>
@@ -58,10 +75,13 @@ class ProductList extends React.Component<Props, State> {
           {this.state.plist.map((val) => (
             <Column size={3} classes={"my-3"}>
               <Product
-                btnClick={() => this.addToCart(val)}
+                clickAction={() =>
+                  this.clickAction(val, this.state.totalAmount)
+                }
                 pdata={val}
                 key={val.productId}
                 currency={this.props.selectedCurrency}
+                totalAmount={this.state.totalAmount}
               />
             </Column>
           ))}

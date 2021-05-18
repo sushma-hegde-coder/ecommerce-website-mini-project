@@ -24,6 +24,7 @@ type State = {
   totalPages: number;
   pageNumber: number;
   pageSize: number;
+  totalAmount: number;
 };
 
 class SearchPage extends React.Component<Props, State> {
@@ -32,6 +33,7 @@ class SearchPage extends React.Component<Props, State> {
     totalPages: 0,
     pageNumber: 1,
     pageSize: 20,
+    totalAmount: 0,
   };
 
   componentDidMount() {
@@ -59,6 +61,17 @@ class SearchPage extends React.Component<Props, State> {
     }
   }
 
+  addTotal(amount: number) {
+    let sum: number = 1000 + this.state.totalAmount;
+    this.setState({ totalAmount: sum });
+  }
+
+  clickAction(val: ProductType, amount: number) {
+    console.log("product", val);
+    console.log("total", amount);
+    // this.addTotal(amount);
+    // this.addToCart(val);
+  }
   addToCart(product: ProductType) {
     this.props.addItem(product); // add to cart logic
     this.props.history.push("/cart"); // redirect to cart page
@@ -76,10 +89,13 @@ class SearchPage extends React.Component<Props, State> {
           {this.state.plist.map((val) => (
             <Column size={3} classes={"my-3"}>
               <Product
-                btnClick={() => this.addToCart(val)}
+                clickAction={() =>
+                  this.clickAction(val, this.state.totalAmount)
+                }
                 pdata={val}
                 key={val.productId}
                 currency={this.props.selectedCurrency}
+                totalAmount={this.state.totalAmount}
               />
             </Column>
           ))}
