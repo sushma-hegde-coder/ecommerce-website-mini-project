@@ -28,7 +28,7 @@ export class OrderEntity {
   @Column({ default: 0, type: "decimal" })
   totalAmount: number;
 
-  @Column({ nullable: true, default: () => "CURRENT_TIMESTAMP" })
+  @Column({ type: "datetime" })
   shippingDate: Date;
 
   @Column({

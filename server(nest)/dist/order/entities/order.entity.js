@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderEntity.prototype, "totalAmount", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true, default: () => "CURRENT_TIMESTAMP" }),
+    typeorm_1.Column({ type: "datetime" }),
     __metadata("design:type", Date)
 ], OrderEntity.prototype, "shippingDate", void 0);
 __decorate([

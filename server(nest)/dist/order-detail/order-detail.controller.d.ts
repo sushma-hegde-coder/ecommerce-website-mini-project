@@ -4,9 +4,9 @@ import { UpdateOrderDetailDto } from "./dto/update-order-detail.dto";
 export declare class OrderDetailController {
     private readonly orderDetailService;
     constructor(orderDetailService: OrderDetailService);
-    create(createOrderDetailDto: CreateOrderDetailDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateOrderDetailDto: UpdateOrderDetailDto): string;
-    remove(id: string): string;
+    create(createOrderDetailDto: CreateOrderDetailDto): import("./entities/order-detail.entity").OrderDetail;
+    findAll(): Promise<import("./entities/order-detail.entity").OrderDetail[]>;
+    findOne(id: string): Promise<import("./entities/order-detail.entity").OrderDetail>;
+    update(id: string, updateOrderDetailDto: UpdateOrderDetailDto): Promise<import("./entities/order-detail.entity").OrderDetail>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }
