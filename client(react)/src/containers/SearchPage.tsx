@@ -67,14 +67,19 @@ class SearchPage extends React.Component<Props, State> {
   }
 
   clickAction(val: ProductType, amount: number) {
-    console.log("product", val);
-    console.log("total", amount);
-    // this.addTotal(amount);
-    // this.addToCart(val);
+    let sum: number = parseInt(val.productSalePrice) + this.state.totalAmount;
+    this.setState({ totalAmount: sum }, () => {
+      this.addToCart(val);
+    });
   }
+
   addToCart(product: ProductType) {
     this.props.addItem(product); // add to cart logic
-    this.props.history.push("/cart"); // redirect to cart page
+    console.log("state value", this.state.totalAmount);
+    this.props.history.push({
+      pathname: "/cart",
+      state: { totalAmount: this.state.totalAmount },
+    }); // redirect to cart page
   }
 
   updateData = (page: number) =>

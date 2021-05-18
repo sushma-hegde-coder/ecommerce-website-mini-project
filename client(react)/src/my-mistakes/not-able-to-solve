@@ -5,4 +5,3 @@ total Amount not able to pass as prop, it should be taken from ProductList pass 
 onsubmit form not able to call a component -Value of type 'typeof SearchPage' is not callable. Did you mean to include 'new'? 
    TypeError: Class constructor SearchPage cannot be invoked without 'new' -----should use history or redirect?
 
-productDetails- both withStyles and connect export default connect(mapStoreToProps, mapDispatchToProps)(ProductList);
