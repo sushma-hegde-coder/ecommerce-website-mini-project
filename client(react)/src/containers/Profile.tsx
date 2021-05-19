@@ -23,15 +23,17 @@ const drawerWidth = 100;
 
 const styles = (theme: Theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    flexGrow: 1,
-    //backgroundColor: theme.palette.background.paper,
+    width: "25vw",
+  },
+  card: {
+    width: "36vw",
   },
   profile_detail: {
     display: "flex",
+    width: "55vw",
   },
   field: {
+    width: "45vw",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -40,10 +42,8 @@ const styles = (theme: Theme) => ({
     //flexDirection: "column",
     // justifyContent: "center",
     //  justifyContent: "space-around",
-    width: "70vw",
+    width: "69vw",
     height: "100vh",
-    marginLeft: "3vh",
-    marginRight: "6vh",
   },
   avatar: {
     backgroundColor: red[500],
@@ -105,7 +105,7 @@ class Profile extends React.Component<any, any> {
     return (
       <div className={classes.profile_detail}>
         <div className={classes.root}>
-          <Card className={classes.root}>
+          <Card className={classes.card}>
             <CardHeader
               avatar={
                 <Avatar aria-label="recipe" className={classes.avatar}>
@@ -145,13 +145,19 @@ class Profile extends React.Component<any, any> {
             </ListItem>
           </List>
         </div>
-        <div>
+        {/* 
+        <div className="row">
+          <div className="col">1 of 2</div>
+          <div className="col">2 of 2</div>
+        </div> */}
+        <div className={classes.outer}>
           <Card className={classes.info}>
             <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">
                 Personal Information
               </Typography>
               <hr />
+
               <div className={classes.field}>
                 <Typography variant="h6" component="h6" color="textSecondary">
                   Name
@@ -165,13 +171,23 @@ class Profile extends React.Component<any, any> {
                   Email Address
                 </Typography>
                 <Typography variant="h6" component="h6" color="textSecondary">
-                  {" ..............   " + this.state.userEmail}
+                  {this.state.userEmail}
                 </Typography>
               </div>
-              <Link to={"/user/collect-address"}>
-                <button>Add address</button>
-              </Link>
-              <button onClick={() => this.delete()}>Remove Address</button>
+
+              <div className={classes.field}>
+                <div>
+                  <Typography variant="h6" component="h6" color="textSecondary">
+                    Address
+                  </Typography>
+                </div>
+                <div>
+                  <Link to={"/user/collect-address"}>
+                    <button>Add address</button>
+                  </Link>
+                  <button onClick={() => this.delete()}>Remove Address</button>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
