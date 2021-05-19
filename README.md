@@ -8,7 +8,7 @@ This is a mini project of Shop App
 ![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/product_info.png?raw-true)
 
 ## Product 
-![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/product.png?raw=true)
+![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/product-page%20(2).png)
 
 ## Cart Page
 ![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/cart__page.png?raw=true)
