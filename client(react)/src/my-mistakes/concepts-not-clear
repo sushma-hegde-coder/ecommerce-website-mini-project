@@ -10,5 +10,5 @@ total Amount not able to pass as prop, it should be taken from ProductList pass 
 
 using material ui in class components  -theme has type any 
 
-
+type=number in input of form , still is taking as string when I did typof ...should write separate state variable for each field, can't write an object and set it at once
 

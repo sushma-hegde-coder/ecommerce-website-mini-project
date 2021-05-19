@@ -1,6 +1,6 @@
 import axios from "axios";
 import constants from "../constants";
-import { LoginResponseType } from "../types";
+import { LoginResponseType, CustomerResponseType } from "../types";
 import StorageService from "./StorageService";
 
 const login = (email: string, password: string) => {
@@ -19,4 +19,11 @@ const profile = () => {
   );
 };
 
-export default { login, profile };
+const register = (name: string, email: string, password: string) => {
+  const url = `${constants.BASE_URL}/auth/register`;
+  return axios
+    .post<CustomerResponseType>(url, { name, email, password })
+    .catch((e) => Promise.reject(e.response.data));
+};
+
+export default { login, profile, register };

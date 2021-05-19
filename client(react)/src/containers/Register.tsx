@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import UserService from "../services/UserService";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -13,15 +13,14 @@ const Register = () => {
   const { name, email, password } = user;
 
   const onInputChange = (e: any) => {
-    console.log(e.target.value);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(email, password, name);
-    await axios.post("http://localhost:5000/auth/register", user);
-    console.log("helo");
+    //console.log(email, password, name);
+    const { data } = await UserService.register(name, email, password);
+    console.log(data);
     history.push("/login");
   };
   return (

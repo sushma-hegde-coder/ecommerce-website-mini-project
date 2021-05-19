@@ -83,11 +83,7 @@ const CartItem: React.FC<Props> = ({
   const theme = useTheme();
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.cover}
-        image={image}
-        title="Live from space album cover"
-      />
+      <CardMedia className={classes.cover} image={image} title="cart item" />
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">

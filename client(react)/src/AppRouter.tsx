@@ -9,6 +9,8 @@ import ProductDetail from "./containers/ProductDetail";
 import ProductList from "./containers/ProductList";
 import CartPage from "./containers/CartPage";
 import SearchPage from "./containers/SearchPage";
+import UserAddressCollection from "./components/user/UserAddressCollection";
+import Checkout from "./containers/Checkout";
 import SortProductPage from "./containers/SortProductPage";
 import Banner from "./Banner";
 
@@ -29,6 +31,11 @@ const AppRouter: React.FC = (props) => {
             <Route path={"/cart"} component={CartPage} />
             <Route path={"/search_product"} component={SearchPage} />
             <Route path={"/sort_product"} component={SortProductPage} />
+            <Route path={"/checkout"} component={Checkout} />
+            <Route
+              path={"/user/collect-address"}
+              component={UserAddressCollection}
+            />
 
             {/* 404 Route */}
             <Route component={ErrorPage} />

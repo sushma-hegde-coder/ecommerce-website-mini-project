@@ -29,7 +29,7 @@ const styles = {
     backgroundColor: red[500],
   },
   button_fav: {
-    backgroundColor: "#d7ccc8",
+    backgroundColor: "#f5f5f5",
     color: "#212121",
     "&:hover": {
       backgroundColor: "#d7ccc8",
@@ -37,7 +37,7 @@ const styles = {
     },
   },
   button_share: {
-    backgroundColor: "#d7ccc8",
+    backgroundColor: "#f5f5f5",
     color: "#212121",
     "&:hover": {
       backgroundColor: "#d7ccc8",

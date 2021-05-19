@@ -15,6 +15,9 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import StorageService from "../services/StorageService";
 
 const drawerWidth = 100;
 
@@ -77,14 +80,26 @@ class Profile extends React.Component<any, any> {
     }
   }
 
-  Hello() {
-    console.log("hello");
-  }
-
   extractFirstLetter(name: string) {
     let na: string = name.substring(0, 1);
     return na.toUpperCase();
   }
+
+  delete = () => {
+    console.log("inside delete", this.state.userId);
+    console.log(history);
+    let id = history.state.state.id;
+    return StorageService.getData("token").then((token) =>
+      axios
+        .delete(`http://localhost:5000/address/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(() => {
+          console.log(`deleted successfully address of ${this.state.userName}`);
+        })
+    );
+  };
+
   render() {
     const { classes, window, theme } = this.props;
     return (
@@ -101,7 +116,7 @@ class Profile extends React.Component<any, any> {
             />
           </Card>
           <List component="nav" aria-label="main mailbox folders">
-            <ListItem button onClick={() => this.Hello()}>
+            <ListItem button onClick={() => {}}>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
@@ -126,11 +141,8 @@ class Profile extends React.Component<any, any> {
           <Divider />
           <List component="nav" aria-label="secondary mailbox folders">
             <ListItem button>
-              <ListItemText primary="Trash" />
+              <ListItemText primary="MY STUFFS" />
             </ListItem>
-            {/* <ListItemLink href="#simple-list">
-          <ListItemText primary="Spam" />
-        </ListItemLink> */}
           </List>
         </div>
         <div>
@@ -156,7 +168,10 @@ class Profile extends React.Component<any, any> {
                   {" ..............   " + this.state.userEmail}
                 </Typography>
               </div>
-              <button>Add address</button>
+              <Link to={"/user/collect-address"}>
+                <button>Add address</button>
+              </Link>
+              <button onClick={() => this.delete()}>Remove Address</button>
             </CardContent>
           </Card>
         </div>

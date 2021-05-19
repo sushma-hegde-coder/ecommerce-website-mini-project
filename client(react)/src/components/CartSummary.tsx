@@ -54,7 +54,7 @@ const CartSummary: React.FC<Props> = ({ numOfItems, total, currencyCode }) => {
         <div className={classes.details}>
           <div className={classes.items}>
             <Typography variant="h6" component="h6" color="textSecondary">
-              Price({numOfItems})
+              Price({numOfItems + " items"})
             </Typography>
             <Typography variant="h6" component="h6" color="textSecondary">
               {formatter.price(total.toString(), currencyCode)}
