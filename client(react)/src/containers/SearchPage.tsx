@@ -10,13 +10,16 @@ import { Dispatch } from "redux";
 import CartActions from "../store/actions/CartActions";
 import Paginate from "../components/Paginate";
 import LoadingWrapper from "../components/LoadingWrapper";
+import TotalAmountActions from "../store/actions/TotalAmountActions";
 import LoadingActions from "../store/actions/LoadingActions";
 
 type Props = {
+  total: number;
   selectedCurrency: CurrencyRateType;
   showLoader: () => void;
   hideLoader: () => void;
   addItem: (product: ProductType) => void;
+  updateTotal: (total: number) => void;
 } & RouteComponentProps;
 
 type State = {
@@ -24,7 +27,6 @@ type State = {
   totalPages: number;
   pageNumber: number;
   pageSize: number;
-  totalAmount: number;
 };
 
 class SearchPage extends React.Component<Props, State> {
@@ -33,7 +35,6 @@ class SearchPage extends React.Component<Props, State> {
     totalPages: 0,
     pageNumber: 1,
     pageSize: 20,
-    totalAmount: 0,
   };
 
   componentDidMount() {
@@ -61,25 +62,18 @@ class SearchPage extends React.Component<Props, State> {
     }
   }
 
-  addTotal(amount: number) {
-    let sum: number = 1000 + this.state.totalAmount;
-    this.setState({ totalAmount: sum });
-  }
-
-  clickAction(val: ProductType, amount: number) {
-    let sum: number = parseInt(val.productSalePrice) + this.state.totalAmount;
-    this.setState({ totalAmount: sum }, () => {
-      this.addToCart(val);
-    });
+  clickAction(val: ProductType) {
+    let no: number = parseInt(val.productSalePrice);
+    let sum: number = no + this.props.total;
+    this.props.updateTotal(sum);
+    this.addToCart(val);
   }
 
   addToCart(product: ProductType) {
-    this.props.addItem(product); // add to cart logic
-    console.log("state value", this.state.totalAmount);
+    this.props.addItem(product);
     this.props.history.push({
       pathname: "/cart",
-      state: { totalAmount: this.state.totalAmount },
-    }); // redirect to cart page
+    });
   }
 
   updateData = (page: number) =>
@@ -94,13 +88,10 @@ class SearchPage extends React.Component<Props, State> {
           {this.state.plist.map((val) => (
             <Column size={3} classes={"my-3"}>
               <Product
-                clickAction={() =>
-                  this.clickAction(val, this.state.totalAmount)
-                }
+                clickAction={() => this.clickAction(val)}
                 pdata={val}
                 key={val.productId}
                 currency={this.props.selectedCurrency}
-                totalAmount={this.state.totalAmount}
               />
             </Column>
           ))}
@@ -120,6 +111,7 @@ class SearchPage extends React.Component<Props, State> {
 const mapStoreToProps = (store: StoreType) => {
   return {
     selectedCurrency: store.currency,
+    total: store.total,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -127,6 +119,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     hideLoader: () => dispatch(LoadingActions.hideLoader()),
     showLoader: () => dispatch(LoadingActions.showLoader()),
     addItem: (p: ProductType) => dispatch(CartActions.addToCart(p)),
+    updateTotal: (total: number) =>
+      dispatch(TotalAmountActions.updateTotal(total)),
   };
 };
 

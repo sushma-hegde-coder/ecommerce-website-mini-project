@@ -10,8 +10,7 @@ type ProductProps = {
   pdata: ProductType;
   wishlist?: boolean;
   currency: CurrencyRateType;
-  clickAction: (val: ProductType, totalAmount: number) => void;
-  totalAmount: number;
+  clickAction: (val: ProductType) => void;
 };
 class Product extends React.Component<ProductProps> {
   renderStock(stock: number) {
@@ -24,9 +23,7 @@ class Product extends React.Component<ProductProps> {
     }
     return (
       <button
-        onClick={() =>
-          this.props.clickAction(this.props.pdata, this.props.totalAmount)
-        } //parent to child, child to parent, you can't change prop taken from parent can only use it to display
+        onClick={() => this.props.clickAction(this.props.pdata)} //parent to child, child to parent, you can't change prop taken from parent can only use it to display
         className="btn btn-sm w-100 btn-primary text-uppercase"
       >
         <i className="fab fa-opencart"></i> Add to Cart

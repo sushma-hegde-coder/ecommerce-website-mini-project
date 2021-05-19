@@ -63,7 +63,7 @@ type Props = {
   currencyCode: string;
   quantity: number;
   incrementTotal: (salePrice: string, id: number) => void;
-  decrementTotal: (salePrice: string, id: number) => void;
+  decrementTotal: (salePrice: string, id: number, quantity: number) => void;
   removeCartItem: (id: number, quantity: number, salePrice: string) => void;
 };
 
@@ -102,7 +102,7 @@ const CartItem: React.FC<Props> = ({
               <IndeterminateCheckBoxOutlinedIcon
                 className={classes.playIcon}
                 onClick={() => {
-                  decrementTotal(salePrice, id);
+                  decrementTotal(salePrice, id, quantity);
                 }}
               />
             </IconButton>

@@ -8,6 +8,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import CartActions from "../store/actions/CartActions";
+import TotalAmountActions from "../store/actions/TotalAmountActions";
 import Paginate from "../components/Paginate";
 import LoadingWrapper from "../components/LoadingWrapper";
 import LoadingActions from "../store/actions/LoadingActions";
@@ -15,18 +16,19 @@ import OperationsOnProduct from "../components/OperationsOnProduct";
 
 type Props = {
   selectedCurrency: CurrencyRateType;
+  total: number;
   showLoader: () => void;
   hideLoader: () => void;
   addItem: (product: ProductType) => void;
+  updateTotal: (total: number) => void;
 } & RouteComponentProps;
 type State = {
   plist: ProductType[];
   totalPages: number;
   pageNumber: number;
-  totalAmount: number;
 };
 class ProductList extends React.Component<Props, State> {
-  state: State = { plist: [], totalPages: 0, pageNumber: 1, totalAmount: 0 };
+  state: State = { plist: [], totalPages: 0, pageNumber: 1 };
   componentDidMount() {
     this.getData();
   }
@@ -46,19 +48,23 @@ class ProductList extends React.Component<Props, State> {
     }
   }
 
-  clickAction(val: ProductType, amount: number) {
-    let sum: number = parseInt(val.productSalePrice) + this.state.totalAmount;
-    this.setState({ totalAmount: sum }, () => {
-      this.addToCart(val);
-    });
+  clickAction(val: ProductType) {
+    // console.log("from store", this.props.total);
+    //console.log("saleprice", parseInt(val.productSalePrice));
+    let no: number = parseInt(val.productSalePrice);
+    let sum: number = no + this.props.total;
+    // console.log("sum", sum, typeof sum);
+    // console.log("to store", sum);
+    this.props.updateTotal(sum);
+    // console.log("value that is store to store", this.props.total);
+    this.addToCart(val);
   }
 
   addToCart(product: ProductType) {
-    this.props.addItem(product); // add to cart logic
-    console.log("state value", this.state.totalAmount);
+    this.props.addItem(product);
+    //console.log("value that is store to store", this.props.total);
     this.props.history.push({
       pathname: "/cart",
-      state: { totalAmount: this.state.totalAmount },
     }); // redirect to cart page
   }
 
@@ -75,13 +81,10 @@ class ProductList extends React.Component<Props, State> {
           {this.state.plist.map((val) => (
             <Column size={3} classes={"my-3"}>
               <Product
-                clickAction={() =>
-                  this.clickAction(val, this.state.totalAmount)
-                }
+                clickAction={() => this.clickAction(val)}
                 pdata={val}
                 key={val.productId}
                 currency={this.props.selectedCurrency}
-                totalAmount={this.state.totalAmount}
               />
             </Column>
           ))}
@@ -102,6 +105,7 @@ class ProductList extends React.Component<Props, State> {
 const mapStoreToProps = (store: StoreType) => {
   return {
     selectedCurrency: store.currency, // undefined => INR => USD
+    total: store.total,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -109,6 +113,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     hideLoader: () => dispatch(LoadingActions.hideLoader()),
     showLoader: () => dispatch(LoadingActions.showLoader()),
     addItem: (p: ProductType) => dispatch(CartActions.addToCart(p)),
+    updateTotal: (total: number) =>
+      dispatch(TotalAmountActions.updateTotal(total)),
   };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(ProductList);
