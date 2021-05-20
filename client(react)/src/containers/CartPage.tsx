@@ -6,7 +6,7 @@ import { CartType, StoreType, CurrencyRateType } from "../types";
 import CartItem from "../components/CartItem";
 import CartSummary from "../components/CartSummary";
 import TotalAmountActions from "../store/actions/TotalAmountActions";
-import ValidateAndClear from "../components/logics/ValidateAndClear";
+// import ValidateAndClear1 from "../components/logics/ValidateAndClear1";
 import "../styles/CartStyle.css";
 
 type Props = {
@@ -119,7 +119,7 @@ class CartPage extends React.Component<Props, State> {
           <button
             type="button"
             className="btn btn-primary btn-lg"
-            onClick={() => ValidateAndClear()}
+            //onClick={() => ValidateAndClear1()}
           >
             PLACE ORDER
           </button>

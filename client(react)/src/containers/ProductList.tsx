@@ -49,23 +49,30 @@ class ProductList extends React.Component<Props, State> {
   }
 
   clickAction(val: ProductType) {
-    // console.log("from store", this.props.total);
-    //console.log("saleprice", parseInt(val.productSalePrice));
+    console.log("from store before updation--", this.props.total);
+    console.log("saleprice--", parseInt(val.productSalePrice));
     let no: number = parseInt(val.productSalePrice);
     let sum: number = no + this.props.total;
     // console.log("sum", sum, typeof sum);
-    // console.log("to store", sum);
+    console.log(" send to store--", sum);
     this.props.updateTotal(sum);
-    // console.log("value that is store to store", this.props.total);
+    console.log("value got from store --", this.props.total);
     this.addToCart(val);
   }
 
   addToCart(product: ProductType) {
     this.props.addItem(product);
-    //console.log("value that is store to store", this.props.total);
+    console.log("value got after addToCart-- ", this.props.total);
+    console.log("value in store now--", this.props.total);
+    console.log("value in store now--", this.props.total);
+    console.log("value in store now--", this.props.total);
+    console.log("value in store now--", this.props.total);
+    console.log("value in store now--", this.props.total);
+    const b = this.props.total;
+    console.log("b", b);
     this.props.history.push({
       pathname: "/cart",
-    }); // redirect to cart page
+    }); // redirect to cart page*/
   }
 
   updateData = (page: number) =>

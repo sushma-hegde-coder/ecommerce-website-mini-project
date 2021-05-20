@@ -1,11 +1,7 @@
 import React from "react";
-import CartPage from "../../containers/CartPage";
+//import CartPage from "../../containers/CartPage";
 
-// type Props = {};
-
-// type State = {};
-
-function ValidateAndClear() {
+/*function ValidateAndClear1() {
   //   render() {
   console.log("hello");
   return (
@@ -14,10 +10,20 @@ function ValidateAndClear() {
     </div>
   );
   //}
+}*/
+
+/*type Props = {};
+
+type State = {};
+
+class ValidateAndClear1 extends React.Component<Props, State> {
+  render() {
+    return (
+      <div>
+        <h1>Hello</h1>
+      </div>
+    );
+  }
 }
 
-// class CartPage extends React.Component<Props, State>{
-
-// }
-
-export default ValidateAndClear;
+export default ValidateAndClear1;*/
