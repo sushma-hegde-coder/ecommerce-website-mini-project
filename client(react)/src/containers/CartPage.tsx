@@ -48,8 +48,8 @@ class CartPage extends React.Component<Props, State> {
   }
 
   decrementTotal(salePrice: string, id: number, quantity: number) {
-    if (quantity === 0) {
-      this.props.removeItemFromCart(id);
+    if (quantity === 1) {
+      this.removeCartItem(id, quantity, salePrice);
       //if quantity is 0 then remove, don't allow user to enter -ve quantity
     } else {
       this.props.decrementQty(id); //now qty is updated (decremented) in store
