@@ -114,6 +114,7 @@ class CartPage extends React.Component<Props, State> {
           numOfItems={this.props.cartLength}
           total={this.props.total}
           currencyCode={this.props.currency.currencyCode}
+          currencyValue={this.props.currency.value}
         />
         <div className="footer">
           <button

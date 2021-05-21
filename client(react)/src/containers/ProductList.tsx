@@ -63,11 +63,6 @@ class ProductList extends React.Component<Props, State> {
   addToCart(product: ProductType) {
     this.props.addItem(product);
     console.log("value got after addToCart-- ", this.props.total);
-    console.log("value in store now--", this.props.total);
-    console.log("value in store now--", this.props.total);
-    console.log("value in store now--", this.props.total);
-    console.log("value in store now--", this.props.total);
-    console.log("value in store now--", this.props.total);
     const b = this.props.total;
     console.log("b", b);
     this.props.history.push({

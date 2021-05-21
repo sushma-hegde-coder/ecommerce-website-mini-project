@@ -35,9 +35,20 @@ type Props = {
   numOfItems: number;
   total: number;
   currencyCode: string;
+  currencyValue: number;
 };
 
-const CartSummary: React.FC<Props> = ({ numOfItems, total, currencyCode }) => {
+function getCorrectTotalValue(total: number, value: number) {
+  let num: number = total * value;
+  return num.toString();
+}
+
+const CartSummary: React.FC<Props> = ({
+  numOfItems,
+  total,
+  currencyCode,
+  currencyValue,
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -57,7 +68,10 @@ const CartSummary: React.FC<Props> = ({ numOfItems, total, currencyCode }) => {
               Price({numOfItems + " items"})
             </Typography>
             <Typography variant="h6" component="h6" color="textSecondary">
-              {formatter.price(total.toString(), currencyCode)}
+              {formatter.price(
+                getCorrectTotalValue(total, currencyValue),
+                currencyCode
+              )}
             </Typography>
           </div>
           <div className={classes.items}>
@@ -91,7 +105,10 @@ const CartSummary: React.FC<Props> = ({ numOfItems, total, currencyCode }) => {
             Total Amount
           </Typography>
           <Typography variant="h6" component="h6" color="textSecondary">
-            {formatter.price(total.toString(), currencyCode)}
+            {formatter.price(
+              getCorrectTotalValue(total, currencyValue),
+              currencyCode
+            )}
           </Typography>
         </div>
       </CardContent>
