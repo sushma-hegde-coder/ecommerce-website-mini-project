@@ -98,8 +98,9 @@ const UserAddressCollection = () => {
               placeholder="560056"
               name="pincode"
               value={pincode}
-              onChange={(e) => {
-                let a: number = parseInt(e.target.value); //you can't assign e.target.value to some other datatype other than string
+              onChange={(e) => {            
+                let a: number = parseInt(e.target.value); //you can't assign e.target.value to some other datatype other than string 
+                //setPinCode(e.target.valueAsNumber)
                 setPincode(a);
                 console.log(pincode, typeof pincode);
               }}
