@@ -1,7 +1,4 @@
 
-## Home Page
-[//]: #![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/home.png?raw-true)
-
 ## All Products
 ![Alt text](https://github.com/sushma-hegde-coder/ecommerce-website-mini-project/blob/main/screen/product-page%20(2).png?raw-true)
 
